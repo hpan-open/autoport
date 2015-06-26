@@ -1,0 +1,17 @@
+ports-mgmt/pkg
+ports-mgmt/dialog4ports
+ports-mgmt/poudriere
+ports-mgmt/portupgrade
+ports-mgmt/portmaster
+misc/mmv
+sysutils/xstow
+security/sudo
+#security/openssh-portable
+sysutils/less
+sysutils/screen
+shells/bash
+shells/bash-completion
+#editors/jed
+ftp/wget
+## nb: don't configure W3M with inline images, it adds a bunch of dependencies onto desktop toolkits, and the build might fail
+www/w3m

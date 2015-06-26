@@ -1,0 +1,6 @@
+emulators/linux-c6
+emulators/virtualbox-ose
+emulators/virtualbox-additions
+emulators/qemu
+emulators/qemu-launcher
+
