@@ -1,4 +1,4 @@
-sysutils/grub2-efi
+#sysutils/grub2-efi
 sysutils/ntfsprogs
 sysutils/fusefs-ntfs
 # note: fusefs-exfat and exfat-tuils may not be redistributable outside of single LAN or organizational contexts
