@@ -1,6 +1,16 @@
 
 # Notes
 
+## Overview - Why Local Ports
+
+* Optimized `/etc/make.conf`
+    * Processor-specific optimizations
+    * Debug Options
+* Custom Package Configuration
+* Institution-Local Building for Non-Redistributable Packages
+    * e.g. Adobe Flash
+* Contextual topic: `pkgng`
+
 ## Procedure : Create Local Jail for Initial Port Builds, Poudriere Runtime
 
 **References**
