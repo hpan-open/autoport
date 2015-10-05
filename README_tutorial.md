@@ -1,7 +1,7 @@
 
 # Notes
 
-1. Create Local Jail from Local Base System Build
+## Procedure : Create Local Jail for Initial Port Builds, Poudriere Runtime
 
 **References**
 * [Managing Jails with ezjail](https://www.freebsd.org/doc/handbook/jails-ezjail.html)
@@ -53,6 +53,9 @@ Ed. Note: ... _sshd, ntpd, syslogd_ ... _PF_ ...
 **Ed. Note:** ezjail may not be "the right tool" to use for creating
 build-time jails to use in Poudriere. However, ezjail can be useful
 for managing jails in which to run Poudriere .
+
+
+## Procedure: Simple Local Build Process with Poudriere
 
 **Creating a jail source for Poudriere build-time jails**
 
