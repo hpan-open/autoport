@@ -135,12 +135,22 @@ Option: Install from list in build log
 **Alternate approach :** Reinstall all packages currently installed
 from repository ${REPNAME}
 
-_Ed note:_ This may alter some packge state data as would otherwise be
-available to `pkg autoremove`. See also, the `%a` query specifier for `pkg query`
+_Ed note:_ Assuming that the `install -f` command may alter some
+_packge state_ data as would otherwise be available to `pkg
+autoremove`, the following script ensures that the _autoremove_ state
+will be restored onto any packages reinstalled with teh script
+
+_Ed. note:_ FIXME - List sorting/deduplication would be easier in
+Lisp. See also: ECL
 
 >     export ASSUME_ALWAYS_YES=yes
->     PKGS="$({ pkg query '%n' && pkg rquery -r ${REPNAME} '%n'; }  | sort | uniq -d)"
+>     IFS=*
+>     PKGS_IN=$(pkg query '%n')
+>     PKGS_AUTO=$(pkg query -e '%a = 1' '%n')
+>     PKGS=$({ echo ${PKGS_IN} && pkg rquery -r ${REPNAME} '%n'; }  | sort | uniq -d)
+>     PKGS_REAUTO=$({ echo ${PKGS_AUTO} && echo $PKGS; } | sort | uniq -d)
 >     pkg update && pkg install -f ${PKGS}
+>     for P in ${PKGS_REAUTO}; do pkg set -A 1 ${P}; done
 
 **Next: Updating Jail and Ports, Rebuilding Packages, and Upgrading Packages on Network Hosts...*
 
