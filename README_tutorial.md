@@ -138,19 +138,27 @@ from repository ${REPNAME}
 _Ed note:_ Assuming that the `install -f` command may alter some
 _packge state_ data as would otherwise be available to `pkg
 autoremove`, the following script ensures that the _autoremove_ state
-will be restored onto any packages reinstalled with teh script
+will be restored onto any packages reinstalled with the script
 
 _Ed. note:_ FIXME - List sorting/deduplication would be easier in
 Lisp. See also: ECL
 
+_Ed. note:_ If package dependencies change across the reinstallation
+process, the subsequent `pkg set` call might fail.
+
 >     export ASSUME_ALWAYS_YES=yes
+>     # Set IFS to a custom value, to ensure newlines are not
+>     # collapsed to spaces in varibles
 >     if [ -v IFS ]; then ORIG_IFS=${IFS}; IFS=*; else unset ORIG_IFS; fi
 >     PKGS_IN=$(pkg query '%n')
 >     PKGS_AUTO=$(pkg query -e '%a = 1' '%n')
 >     PKGS=$({ echo ${PKGS_IN} && pkg rquery -r ${REPNAME} '%n'; }  | sort | uniq -d)
->     PKGS_REAUTO=$({ echo ${PKGS_AUTO} && echo $PKGS; } | sort | uniq -d)
+>     PKGS_REAUTO=$({ echo ${PKGS_AUTO} && echo ${PKGS}; } | sort | uniq -d)
+>     # Update pkgng Repository Information and Re-Install Packages
 >     pkg update && pkg install -f ${PKGS}
+>     # Ensure 'autoremove' flag is still set on original 'autoremove' packages
 >     for P in ${PKGS_REAUTO}; do pkg set -A 1 ${P}; done
+>     # Reset IFS
 >     if [ -v ORIG_IFS ]; then IFS=${ORIG_IFS}; unset ORIG_IFS: fi
 
 **Next: Updating Jail and Ports, Rebuilding Packages, and Upgrading Packages on Network Hosts...*
