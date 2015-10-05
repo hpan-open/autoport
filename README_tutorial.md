@@ -54,7 +54,9 @@ Ed. Note: ... _sshd, ntpd, syslogd_ ... _PF_ ...
 build-time jails to use in Poudriere. However, ezjail can be useful
 for managing jails in which to run Poudriere .
 
-**Creating a jail source tfor Poudriere build-time jails**
+**Creating a jail source for Poudriere build-time jails**
+
+_Ed note:_ A FreeBSD _base system_ was previously built in `/usr/src`
 
 >     cd /usr/src
 >     make installworld DESTDIR=/usr/jails/pjail DB_FROM_SRC=1
@@ -66,11 +68,6 @@ for managing jails in which to run Poudriere .
 
 >     VERSION=$(uname -r)
 >     JAILNAME=$(echo $VERSION | sed 's|\.|-|')
-
-**NOT**
->     poudriere jail -c -j ${JAILNAME} -v ${VERSION} -m null -M /usr/jails/portjail
-
-**INSTEAD**
 >     poudriere jail -c -j ${JAILNAME} -v ${VERSION} -m null -M /usr/jails/pjail
 
 _Ed. Note:_ The jail created in this step will be used as a source for
