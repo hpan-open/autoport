@@ -1,3 +1,7 @@
-git-subversion
-svn
-gmake
+devel/git
+devel/git-subversion
+devel/git-cola
+devel/gmake
+devel/cmake
+devel/cmake-gui
+devel/subversion
