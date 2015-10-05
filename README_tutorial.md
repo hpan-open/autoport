@@ -8,9 +8,12 @@
 * [ezjail homepage](https://erdgeist.org/arts/software/ezjail/)
 * [Appserver Jails HOWTO](https://wiki.freebsd.org/AppserverJailsHOWTO)
 
-**Ed Note**: The following text about ezjail might be a useful summary, though not going into detail about launching poudriere from within the created jail
+**Ed Note**: The following text about ezjail might be a useful
+summary, though not going into detail about launching Poudriere from
+within the created jail.
 
-First, **configure `rc.conf` for `cloned_interfaces="lo1"`**, then `service netif cloneup`
+First, **define `lo` as a _cloned interfce** -- configure `rc.conf`
+for `cloned_interfaces="lo1"`**, then `service netif cloneup` 
 
 Secondly, **update the system ports tree** (`portsnap`) 
 
@@ -30,9 +33,12 @@ If needed, **rebuild the system's pkgng**
 >     cd /usr/ports/sysutils/ezjail
 >     make install clean
 
-Optionally, **configure `rc.conf` for `ezjail_enable="YES"`** and `service ezjail start`
+Optionally, **enable ezjail initialization at boot time, and start
+ezjail** -- configure `rc.conf` for `ezjail_enable="YES"` and `service
+ezjail start`
 
-**Build the _basejail_** for the host -- to `/usr/jails/fulljail` from `/usr/src` (as previously a `make installworld` source)
+**Build the _basejail_** for the host -- to `/usr/jails/fulljail` from
+`/usr/src` (as previously a `make installworld` source)
 
 >     ezjail-admin update -i -p
 
@@ -42,9 +48,11 @@ Ed. note: _This takes a short while_
 
 >     ezjail-admin create portjail 'lo1|127.0.0.1,em0|192.168.100.50'
 
-Ed. Note: ... sshd, ntpd, syslogd ...
+Ed. Note: ... _sshd, ntpd, syslogd_ ... _PF_ ...
 
-**Ed. Note:** ezjail may not be "the right tool" to use for creating build-time jails to use in Poudriere. However, ezjail can be useful for managing jails in which to run poudriere
+**Ed. Note:** ezjail may not be "the right tool" to use for creating
+build-time jails to use in Poudriere. However, ezjail can be useful
+for managing jails in which to run Poudriere .
 
 **Creating a jail source tfor Poudriere build-time jails**
 
@@ -65,7 +73,8 @@ Ed. Note: ... sshd, ntpd, syslogd ...
 **INSTEAD**
 >     poudriere jail -c -j ${JAILNAME} -v ${VERSION} -m null -M /usr/jails/pjail
 
-_Ed. Note: The jail created in this step will be used as a source for initializing a 'reference jail', at build time_
+_Ed. Note:_ The jail created in this step will be used as a source for
+initializing a Poudriere _reference jail_, at build time
 
 **Initialize a ports tree with Poudriere**, using the 'git' ports method
 
@@ -89,7 +98,8 @@ Ed. note: _This takes a short while_
 
 >     poudriere options -p ${PORTSNAME} -j ${JAILNAME} -f my.list
 
-Ed. note: Some configuration options may result in selection of additional dependencies, thus requiring later configuration dialogues
+Ed. note: Some configuration options may result in selection of
+additional dependencies, thus requiring later configuration dialogues
 
 ** Build Packages from list**, 3 parallel builds
 
@@ -97,7 +107,7 @@ Ed. note: Some configuration options may result in selection of additional depen
 
 Ed. note: distfiles retrieved from `MASTER_SITES`
 
-Ed. note: FIles will be created at  `"/usr/local/poudriere/data/packages/${JAILNAME}-${PORTSNAME}"`
+Ed. note: Files will be created at  `"/usr/local/poudriere/data/packages/${JAILNAME}-${PORTSNAME}"`
 
 Ed. note: See also `pkg.conf(5)`
 
@@ -115,7 +125,7 @@ Ed. note: See also `pkg.conf(5)`
 
 ...
 
-FIXME: That's all of a non-optimal way to do it
+**FIXME:** That's all of a non-optimal way to do it
 
 
 Alternate approach: Install from list in build log 
