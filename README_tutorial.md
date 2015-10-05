@@ -125,21 +125,22 @@ Ed. note: See also `pkg.conf(5)`
 
 ...
 
-**FIXME:** That's all of a non-optimal way to do it
-
-
-Alternate approach: Install from list in build log 
+Option: Install from list in build log 
 
 >     export ASSUME_ALWAYS_YES=yes
 >     PKGS=$(awk '{print $1}' /usr/local/poudriere/data/logs/bulk/${JAILNAME}-${PORTSNAME}/latest/.poudriere.ports.built)
->     pkg remove ${PKGS} && pkg install ${PKGS}
+>     pkg install -f ${PKGS}
 
 
-Alternate approach : Reinstall all packages installed from repository ${REPNAME}
+**Alternate approach :** Reinstall all packages currently installed
+from repository ${REPNAME}
+
+_Ed note:_ This may alter some packge state data as would otherwise be
+available to `pkg autoremove`. See also, the `%a` query specifier for `pkg query`
 
 >     export ASSUME_ALWAYS_YES=yes
->     PKGS="$(pkg rquery -r ${REPNAME} '%n')"
->     pkg remove ${PKGS} && pkg install ${PKGS}
+>     PKGS="$({ pkg query '%n' && pkg rquery -r ${REPNAME} '%n'; }  | sort | uniq -d)"
+>     pkg update && pkg install -f ${PKGS}
 
 **Next: Updating Jail and Ports, Rebuilding Packages, and Upgrading Packages on Network Hosts...*
 
