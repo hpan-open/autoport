@@ -144,13 +144,14 @@ _Ed. note:_ FIXME - List sorting/deduplication would be easier in
 Lisp. See also: ECL
 
 >     export ASSUME_ALWAYS_YES=yes
->     IFS=*
+>     if [ -v IFS ]; then ORIG_IFS=${IFS}; IFS=*; else unset ORIG_IFS; fi
 >     PKGS_IN=$(pkg query '%n')
 >     PKGS_AUTO=$(pkg query -e '%a = 1' '%n')
 >     PKGS=$({ echo ${PKGS_IN} && pkg rquery -r ${REPNAME} '%n'; }  | sort | uniq -d)
 >     PKGS_REAUTO=$({ echo ${PKGS_AUTO} && echo $PKGS; } | sort | uniq -d)
 >     pkg update && pkg install -f ${PKGS}
 >     for P in ${PKGS_REAUTO}; do pkg set -A 1 ${P}; done
+>     if [ -v ORIG_IFS ]; then IFS=${ORIG_IFS}; unset ORIG_IFS: fi
 
 **Next: Updating Jail and Ports, Rebuilding Packages, and Upgrading Packages on Network Hosts...*
 
