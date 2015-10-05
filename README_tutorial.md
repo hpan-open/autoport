@@ -98,7 +98,7 @@ Ed. note: _This takes a short while_
 Ed. note: Some configuration options may result in selection of
 additional dependencies, thus requiring later configuration dialogues
 
-** Build Packages from list**, 3 parallel builds
+**Build Packages from list**, Three parallel builds
 
 >     poudriere bulk -p ${PORTSNAME} -j ${JAILNAME} -f my.list -J 3 -C
 
@@ -122,7 +122,11 @@ Ed. note: See also `pkg.conf(5)`
 
 ...
 
-Option: Install from list in build log 
+**Option:** Install from list in build log
+
+_Ed note:_ In this approach, every package installed will be marked as
+_manually installed_. Thus, none of the packages may be subsequently
+removed with `pkg autoremove`
 
 >     export ASSUME_ALWAYS_YES=yes
 >     PKGS=$(awk '{print $1}' /usr/local/poudriere/data/logs/bulk/${JAILNAME}-${PORTSNAME}/latest/.poudriere.ports.built)
@@ -130,7 +134,7 @@ Option: Install from list in build log
 
 
 **Alternate approach :** Reinstall all packages currently installed
-from repository ${REPNAME}
+from repository `${REPNAME}`
 
 _Ed note:_ Assuming that the `install -f` command may alter some
 _packge state_ data as would otherwise be available to `pkg
