@@ -1,0 +1,4 @@
+ports-mgmt/dialog4ports
+ports-mgmt/poudriere
+ports-mgmt/portupgrade
+ports-mgmt/portmaster
