@@ -1,6 +1,6 @@
 emulators/linux-c6
 emulators/virtualbox-ose
-emulators/virtualbox-additions
+emulators/virtualbox-ose-additions
 emulators/qemu
 emulators/qemu-launcher
-
+deskutils/virt-manager
