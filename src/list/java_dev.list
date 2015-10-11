@@ -1,0 +1,8 @@
+java/openjdk7
+java/openjdk8
+java/bootstrap-openjdk
+devel/apache-ant
+devel/maven31
+devel/maven-wrapper
+java/eclipse
+java/eclipse-cdt
