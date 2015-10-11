@@ -187,7 +187,7 @@ additional dependencies, thus requiring later configuration dialogues
 
 >     poudriere bulk -p ${TREENAME} -j ${JAILNAME} -f my.list -J 3 -C
 
-**Ed. note:** distfiles retrieved from `MASTER_SITES` (Provenance)
+e**Ed. note:** distfiles retrieved from `MASTER_SITES` (Provenance). See also: `PATCH_SITES`, [ports(7)](https://www.freebsd.org/cgi/man.cgi?ports%287%29)
 
 **Ed. note:** Files will be created at  `"/usr/local/poudriere/data/packages/${JAILNAME}-${TREENAME}"`
 
@@ -349,16 +349,14 @@ Desription of Issue: `emulators/virtualbox-ose` when configured with
 `MANUAL=on` depends on `print/tex-formats`. The `print/tex-formats`
 port build fails with a message about `build-depends`.
 
-**Ed. Note:** It may seem that this particular message may indicate a
-failure when building or when installing the 'build-depends' of the
-denoted port.
+**Ed. Note:** This particular message may indicate a failure when
+building or when installing the 'build-depends' of the denoted port.
 
 For further information about the failure, the build's log files may
 be consulted.
 
 **Ed. Note:** The `print/tex-formats` port is a _metaport_ defined
 with `NO_BUILD=yes`, `NO_INSTALL=yes`. See also: [FreeBSD Porter's Handbook](https://www.freebsd.org/doc/en/books/porters-handbook/index.html)
-
 
 Reviewing the log of the `print/tex-formats` port build, at pathname
 `/usr/local/poudriere/data/logs/bulk/${JAILNAME}-${TREENAME}/${BUILD_TIMESTAMP}/logs/tex-formats-${...}.log`
@@ -369,8 +367,7 @@ Workaround: Reconfiguring `emulators/virtualbox-ose` with `MANUAL=off`,
 the build succeeds. However, other builds depending on `tex-formats`
 may fail
 
-Alternate Workaround: Build `print/tex-dvipsk`, then build
-`print/tex-formats`. If build fails, review later logs
+Building `print/tex-dvipsk`, then building `print/tex-formats` ... reviewing log
 
 > [10-2-STABLE-granite-job-01] `-- Extracting texlive-base-20150521_6: .......... 
 > done
@@ -381,11 +378,16 @@ Alternate Workaround: Build `print/tex-dvipsk`, then build
 > 
 > Failed to install the following 1 package(s): /packages/All/texlive-texmf-20150523_3.txz
 
-Poroviding the `-C` argument to `poudriere bulk`, damaged distfile
-archives will be removed before build
-
-> poudriere bulk -j ${JAIL}${TREE} -C -J 3 print/texlive-texmf
-
+**Ed. Note:** The previous error in building `texlive-texmf` was
+resolved ias an apparent result of making a configuration change in the
+build host's `poudriere.conf` file. The configuration change was
+performed as to prevent Poudriere from caching with MFSFS, instead
+preferring TMPFS for caching. In the configuration change,
+`"MFFSIZE=2G"` was commented out in `poudriere.conf`, with
+`USE_TMPFS="wrkdir data"` then defined instead. Subsequently, the
+build succeeded. The failure from LZMA may have been aresult of the
+_build jail_ filesystem running out of filesystem storage space, as
+was under the initial`MFSSIZE` limit
 
 ## Procedure: Update Poudriere, Jail and Ports, Rebuild Packages, and Upgrade Packages on Network Hosts
 
@@ -460,6 +462,8 @@ upstream ports to current release versions of upstream software.
 modifications, ...
 * Topic: Git 'pull' requests
 
+e**Ed. note:** distfiles retrieved from `MASTER_SITES` (Provenance). See also: `PATCH_SITES`, [ports(7)](https://www.freebsd.org/cgi/man.cgi?ports%287%29)
+
 
 ## Topic: Building as a Non-Root User
 
@@ -476,6 +480,11 @@ The poudriere `queue` command
 The _Autoports_ project, as well as developing this rudimentary
 documentation, furthermore develops a concept of _Build sets_ for
 coordination of bulk port builds with Poudriere.
+
+## Topic: Signing the Package Repository
+
+* File `poudriere.conf`, option `PKG_REPO_SIGNING_KEY`
+* Manual page pkg-repo(8)
 
 ## Topic: ...
 
