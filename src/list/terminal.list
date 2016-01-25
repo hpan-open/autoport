@@ -10,3 +10,4 @@ editors/uemacs
 ftp/wget
 ## nb: don't configure W3M with inline images, it adds a bunch of dependencies onto desktop toolkits, and the build might fail
 www/w3m
+security/openssl
