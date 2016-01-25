@@ -1,0 +1,15 @@
+## depends-on : linux-emulation
+devel/android-tools-adb
+devel/android-tools-adb-devel
+devel/android-tools-adb
+devel/android-tools-fastboot
+devel/android-tools-fastboot-devel
+devel/android-tools-simpleperf
+devel/gradle
+# no Android SDK installer (TO DO)
+# no Android Development Tools / installer (TO DO)
+## see also
+## http://tiggeron.blogspot.com/2014/01/freebsd-android-development-success.html
+##   note : Linux emulation
+## http://zewaren.net/site/?q=node/125
+##   note: Linux emulation, Gradle, Android SDK, workarounds
