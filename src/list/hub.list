@@ -3,3 +3,4 @@ dns/djbdns
 dns/djbdns-tools
 sysutils/daemontools
 www/squid
+security/openssh-portable
