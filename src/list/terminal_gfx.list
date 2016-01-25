@@ -1,0 +1,3 @@
+# depends-on: terminal.list
+security/gnome-ssh-askpass
+sysutils/gksu
