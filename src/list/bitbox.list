@@ -1,0 +1,12 @@
+shells/bash
+shells/bash-completion
+editors/uemacs
+editors/nano
+sysutils/screen
+security/openssl
+net-p2p/litecoin-daemon
+net-p2p/litecoin-utils
+net-p2p/bitcoin-daemon
+net-p2p/bitcoin-utils
+net-p2p/cpuminer
+
