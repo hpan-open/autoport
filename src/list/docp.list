@@ -1,0 +1,56 @@
+textproc/docproj
+## DocBook meta-port:
+textproc/docbook
+## for xlst
+### Java
+java/openjdk8
+textproc/xml-commons
+### xsltproc - used by DocProj
+textproc/libxslt
+### other XSLT & misc API tools
+textproc/saxon-devel
+math/jeuclid
+textproc/fop
+## for spell-checking in document QA:
+textproc/aspell
+textproc/aspell-ispell
+## for editing in an environment extensible with Emacs Lisp (GUI)
+editors/emacs
+## basic change management
+devel/cvs
+devel/git
+devel/git-cvs
+devel/subversion
+devel/mercurial
+### NB: Git Cola (GUI)
+devel/git-cola
+## build orchestration
+### FIXME: UPDATE GRADLE PORT => GRADLE 3
+devel/gradle
+### Maven
+#### something like Debian 'alternatives' specifically for Maven though:
+devel/maven-wrapper
+#### may be required in addition to devel/maven-wrapper
+devel/maven33
+### Ant
+devel/apache-ant
+### Ivy (N/A) (FIXME)
+## Graphics (GUI)
+graphics/inkscape
+graphics/dia
+graphics/gimp
+graphics/gimp-help
+print/foxitreader
+## baseline shell utilities
+misc/mmv
+sysutils/less
+sysutils/screen
+shells/bash
+shells/bash-completion
+editors/uemacs
+## baseline network utilities
+ftp/wget
+www/w3m
+security/openssl
+## baseline X client environment (GUI)
+x11/aterm
