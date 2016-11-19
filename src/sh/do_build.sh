@@ -47,4 +47,5 @@ $PCMD options -j ${JAIL} -p ${TREE} -f ${LIST}
 
 msg "Building ports from list $1"
 
-$PCMD bulk -j ${JAIL} -C -v -p ${TREE} -f ${LIST} -J ${PARALLEL} ${MAINS}
+## do not clean (-C) with bulk build
+$PCMD bulk -j ${JAIL} -v -p ${TREE} -f ${LIST} -J ${PARALLEL} ${MAINS}
