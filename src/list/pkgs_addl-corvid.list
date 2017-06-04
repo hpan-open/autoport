@@ -1,0 +1,123 @@
+## see also ./ports_manual_ad-hoc-profile-granite.list
+OpenSP
+a2pdf
+
+## following: software component D&C - Config - Reflection
+augeas
+
+## following: makeefile introspection
+bmake
+make++
+texinfo ## CORE TERMINAL PROFILE (FIXME)
+
+## following: documentation tools
+markdown
+robodoc
+## ... sphinx, doxygen, ...
+
+## following: desktop OS utilities
+menu-cache
+xdg-user-dirs
+## ... and xfce. 
+## some of the following might be redundant in XFCE4 dists on BSD
+xfce4-screenshooter-plugin 
+xfce4-taskmanager
+xfce4-volumed
+xfce4-wm-themes
+
+## following: desktop OS fonts
+stixfonts
+terminus-font
+ubuntu-font
+webfonts
+
+## following: Desktop OS - Media Applications
+toolame
+
+## following: Desktop OS - sci. applications
+xearth
+
+## following: Linux compat
+rpm2cpio
+
+## following: text utilities - SGML, XML DTD management
+mkcatalog
+xhtml-11
+xhtml1-xsd
+xhtml-basic
+## removed (?) and by whom ?
+#xml-catalog-tr9401
+xhtml-modularization
+
+
+## following: SCCM
+rcs
+cvsup
+mercurial
+tla
+cvs
+
+## following: cf 'dig' (?)
+bind-tools
+## following: "DUNNO" for port respons.
+cl-cffi
+cl-infix
+clisp-hyperspec
+
+## following: "DUNNO" cf. MGTCI
+cryptopp
+
+## following: devops & BSD
+cscope
+ctags
+## following: LOCAL
+#dita12-dtd
+#xemacs
+## following: ??
+fusefs-ext4fuse
+## followiing: docs
+gconf2-reference
+## following: telecoms
+irssi
+## following: files, filesystems, sysadmin tasks
+lsof
+## following: files, metadata, nonrepudiation
+isomd5sum
+## following: devops, java QA
+#linux-oracle-jdk8
+## following: lua (??)
+#lua-mode.el
+#luajit
+
+## folliwng: SML
+smlnj
+mosml
+polyml
+mlton
+
+## following: DevOps misc
+#tkdiff ## see also, SourceGear Diffmerge
+
+## following: virtualization - userspace virt.
+qemu
+virt-manager
+virtualbox-ose
+virtualbox-ose-additions
+
+
+## following: data systems development
+hdf5
+mariadbconnector-c
+mariadb102-server
+mariadb102-client
+postgresql-libpgeasy
+postgresql-libpqxx
+postgresql-plproxy
+postgresql-relay
+postgresql-repmgr2
+postgresql96-contrib
+postgresql96-client
+postgresql96-docs
+postgresql96-server
+mongodb34
+## see also: infinispan; modeshape; ...
