@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Synopsis: Display the port origin of a versioned package name e.g curl-7.53.1
+#
+# Note: may be useful for applications together with 'pkg lock', cf. pkg-lock(8)
+#
+# See Also: pkg-tools ... pkg-versioned-pkg-name
+
+for P in $@; do 
+  pkg info -o "$P" | awk '{print $2}'
+done

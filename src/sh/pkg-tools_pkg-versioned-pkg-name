@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Synopsis: display the package name without version qualifier, for a versioned package name (BSD) 
+#
+# Note: may be useful for applications together with 'pkg lock', cf. pkg-lock(8)
+#
+# Example: pkg-tools_pkg-versioned-pkg-name $(pkg lock --show | grep '-')
+
+## FIXME: DNW for arg 'chromium-56.0.2924.87_2'
+##    NOTE: pkg info -o chromium-56.0.2924.87_2 # wrks
+
+exec pkg-port-pkg $(pkg-tools_pkg-versioned-pkg-origin $@)

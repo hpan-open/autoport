@@ -1,0 +1,29 @@
+#!/bin/sh
+
+## Description: Print the port name as was the port 'origin' for each
+## package specified in $@, using present package
+## repository information
+
+
+## FIXME - Note that the pkg-query utility, as called below, exits
+## with a zero exit status, even if there is no package name for the
+## specified query. Ideally, it should exit with a non-zero exit code,
+## in such situation.
+##
+## Similar for pkg-rquery
+
+## See also:
+##  * pkg-query(8)
+##  * utility script 'pkg-port-pkg' and notes
+
+## FIXME: This script uses 'pkg query' and is thus constrained
+## onto locally installed packages
+
+EXCODE=0
+
+for P in $@; do
+	pkg query -e "%n = $P" "%o"
+	EXCODE=$?
+done
+
+exit $EXCODE

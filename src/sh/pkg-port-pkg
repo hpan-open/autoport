@@ -1,0 +1,38 @@
+#!/bin/sh
+
+## Description: Print the package name for the package that would be
+## built from each port specified in $@, using present package
+## repository information
+
+## see also: 
+## * pkg-update(8)
+## * pkg-query(8)
+##  * `pkg query "%o"` => [task] list ports serving as "origin" of installed packages
+##  * `pkg query -e "%n = <NAME>" "%o" [task] list ports serving as "origin" of a package named <NAME>
+##  * utility script 'pkg-port' and notes
+
+
+## FIXME - Note that the pkg-rquery utility, as called below, exits
+## with a zero exit status, even if there is no package name for the
+## specified query. Ideally, it should exit with a non-zero exit code,
+## in such situation.
+##
+## Similar for pkg-query
+
+## FIXME: this script now uses 'pkg query' instead of 'pkg rquery'
+## Thus, this script's applicability may be limited to the set of
+## installed packages.
+## 
+## case study: 'pkg-port-pkg chromium-56.0.2924.87_2' installed locally, 
+##  and no result when this script uses 'pkg rquery' in place of 'pkg query'
+##
+## Note: Synchronization of local, remote databases for port, package metadata
+
+EXCODE=0
+
+for P in $@; do
+	pkg query -e "%o = $P" "%n"
+	EXCODE=$?
+done
+
+exit $EXCODE

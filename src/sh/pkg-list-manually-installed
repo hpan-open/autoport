@@ -1,0 +1,3 @@
+#!/bin/sh
+## note : pkg-rquery(...) manual page for queries onto package repository
+exec pkg query -e "%a = 0" "%n" 
